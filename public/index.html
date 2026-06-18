@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Filler Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-20T5LDY4WR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-20T5LDY4WR');
+    </script>
+</head>
+<body>
+    <div class="background-decor"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Form Filler <span class="accent">Pro</span></h1>
+            <div class="author-section">
+                <img src="profile.jpg" alt="Mohamed Showkani" class="profile-pic">
+                <h3 class="author-name">By Mohamed Showkani</h3>
+            </div>
+            <p>Questionnaire Buux-buuxiye, Ku Buuxso Questionnaire kaaga wakhti kooban Iyo tirada response ee aad rabto</p>
+        </header>
+
+        <main>
+            <div class="card setup-card" id="setupCard">
+                <div class="input-group">
+                    <label for="formUrl">Google Form URL</label>
+                    <input type="url" id="formUrl" placeholder="https://docs.google.com/forms/d/e/.../viewform" autocomplete="off">
+                </div>
+                
+                <div class="input-group">
+                    <label for="amount">Number of Responses</label>
+                    <input type="number" id="amount" placeholder="e.g. 50" min="1" max="1000" value="39">
+                </div>
+
+                <button class="primary-btn" id="analyzeBtn">Analyze & Start</button>
+                <div id="setupError" class="error-msg"></div>
+            </div>
+
+            <div class="card progress-card hidden" id="progressCard">
+                <h2>Submission Progress</h2>
+                <h3 id="formTitle" class="form-title"></h3>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                <div class="progress-text">
+                    <span id="progressCount">0 / 0</span>
+                    <span id="timeEstimate">Estimated time: --</span>
+                </div>
+
+                <div class="log-window" id="logWindow">
+                    <!-- Logs will appear here -->
+                </div>
+
+                <button class="secondary-btn hidden" id="resetBtn">Fill Another Form</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="social-links">
+                <a href="https://wa.me/252634517096" target="_blank" class="social-btn whatsapp">WhatsApp (+252634517096)</a>
+                <a href="https://www.facebook.com/maxamed.cabdifataax.1238" target="_blank" class="social-btn">Facebook</a>
+                <a href="https://www.instagram.com/404_phantom/" target="_blank" class="social-btn">Instagram</a>
+                <a href="mailto:3ngm0h@gmail.com" class="social-btn">Email</a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
