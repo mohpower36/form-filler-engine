@@ -95,6 +95,9 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < totalAmount; i++) {
             // Generate Payload
             const payload = new URLSearchParams();
+            payload.append('fvv', '1');
+            payload.append('pageHistory', '0');
+            
             currentFields.forEach(f => {
                 if (f.options && f.options.length > 0) {
                     // Try to be smart if 5 options (Likert scale)
