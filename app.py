@@ -52,21 +52,19 @@ def analyze_form():
             for field in fields_data:
                 field_name = field[1]
                 field_type = field[3]
-                options = []
-                entry_id = None
                 if len(field) > 4 and field[4]:
                     for entry_data in field[4]:
                         entry_id = entry_data[0]
+                        options = []
                         if len(entry_data) > 1 and entry_data[1]:
-                            options = [opt[0] for opt in entry_data[1] if opt]
-                
-                if entry_id:
-                    extracted_fields.append({
-                        "name": field_name,
-                        "type": field_type,
-                        "id": f"entry.{entry_id}",
-                        "options": options
-                    })
+                            options = [str(opt[0]) for opt in entry_data[1] if opt is not None and len(opt) > 0 and opt[0] is not None]
+                        
+                        extracted_fields.append({
+                            "name": field_name,
+                            "type": field_type,
+                            "id": f"entry.{entry_id}",
+                            "options": options
+                        })
                 
         return jsonify({"title": form_title, "fields": extracted_fields})
     except Exception as e:

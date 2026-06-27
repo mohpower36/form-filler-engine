@@ -100,8 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             currentFields.forEach(f => {
                 if (f.options && f.options.length > 0) {
-                    // Try to be smart if 5 options (Likert scale)
-                    if (f.options.length === 5) {
+                    if (f.type === 4) {
+                        // Checkboxes - maybe select 1 or 2 random options
+                        const numSelections = Math.floor(Math.random() * 2) + 1;
+                        const shuffled = [...f.options].sort(() => 0.5 - Math.random());
+                        for (let k = 0; k < numSelections && k < shuffled.length; k++) {
+                            payload.append(f.id, shuffled[k]);
+                        }
+                    } else if (f.options.length === 5) {
+                        // Likert scale bias
                         const weights = [5, 10, 20, 45, 20];
                         let totalWeight = 100;
                         let random = Math.random() * totalWeight;
@@ -115,12 +122,23 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                         payload.append(f.id, f.options[selectedIndex]);
                     } else {
-                        // Pure random
+                        // Pure random for other multiple choice / grid / dropdown
                         const randomOpt = f.options[Math.floor(Math.random() * f.options.length)];
                         payload.append(f.id, randomOpt);
                     }
                 } else {
-                    payload.append(f.id, 'Random response');
+                    if (f.type === 9) {
+                        // Date type: usually expects YYYY-MM-DD
+                        payload.append(f.id, '2024-06-17');
+                    } else if (f.type === 10) {
+                        // Time type: expects HH:MM
+                        payload.append(f.id, '14:30');
+                    } else {
+                        // Text fallback
+                        const randomStrings = ["Great!", "Yes", "No", "N/A", "Looks good", "Random response"];
+                        const randomText = randomStrings[Math.floor(Math.random() * randomStrings.length)];
+                        payload.append(f.id, randomText);
+                    }
                 }
             });
 
